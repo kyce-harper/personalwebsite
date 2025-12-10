@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Xbox 360 Style</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Blurred white swirl background -->
+    <svg class="background-swirl" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <filter id="swirl-blur">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+            </filter>
+        </defs>
+        <path d="M 100 400 Q 250 200, 400 150 T 700 300 T 1000 200 Q 1100 180, 1200 400" 
+              stroke="rgba(255,255,255,0.08)" stroke-width="120" fill="none" filter="url(#swirl-blur)" 
+              stroke-linecap="round" />
+        <path d="M 50 500 Q 300 600, 500 550 T 900 650 T 1200 500" 
+              stroke="rgba(255,255,255,0.06)" stroke-width="100" fill="none" filter="url(#swirl-blur)" 
+              stroke-linecap="round" />
+    </svg>
+
+    <header class="site-header">
+        <div class="site-left">
+            <button id="hamburgerBtn" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+            </button>
+            <div class="dashboard-title">My Portfolio</div>
+        </div>
+
+        <nav class="nav-menu" id="mainNav">
+            <ul>
+                <li class="active">My Dashboard</li>
+            </ul>
+        </nav>
+
+        <div class="site-right">
+            <div class="user-info">CS Student | C++ Engineer</div>
+        </div>
+    </header>
+
+    <!-- Off-canvas nav overlay (shown when mobile nav is open) -->
+    <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
+
+    <div class="avatar-container">
+        <div class="avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-image">👤</div>
+        </div>
+        <div class="gamertag">Kyce Harper</div>
+        <div class="gamerscore">210G</div>
+    </div>
+
+    <div class="info-section">
+        <h2 class="info-title">About Me</h2>
+        <p class="info-text">Currently Working On App Launch for LiftLog IOS</p>
+        <div class="social-links">
+            <a href="mailto:your.email@example.com" class="social-icon" title="Email">📧</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-icon" title="LinkedIn">💼</a>
+            <a href="https://youtube.com/@yourchannel" target="_blank" class="social-icon" title="YouTube">📺</a>
+            <a href="https://github.com/yourusername" target="_blank" class="social-icon" title="GitHub">💻</a>
+        </div>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel" id="carousel"></div>
+    </div>
+
+    <div class="counter" id="counter">1 of 4</div>
+    
+    <div class="controls">
+        <span class="xbox-button">A</span> Select
+        <span style="margin-left: 20px;"><span class="xbox-button">B</span> Back</span>
+    </div>
+
+    <div class="content-modal" id="modal">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

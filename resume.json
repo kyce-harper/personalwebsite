@@ -1,0 +1,19 @@
+{
+  "education": [
+    {
+      "degree": "B.S. Computer Science",
+      "school": "University Name",
+      "graduation": "Expected Graduation: 2026",
+      "gpa": "GPA: 3.8/4.0"
+    }
+  ],
+  "skills": "C++17/20, Python, SIMD, Multi-threading, OpenGL, Vulkan, CMake, Git, Linux",
+  "experience": [
+    {
+      "title": "Performance Engineering Intern",
+      "company": "Company Name",
+      "description": "Optimized rendering pipeline, reducing frame time by 30% through profiling and targeted optimizations."
+    }
+  ],
+  "resumeLink": "/path/to/resume.pdf"
+}

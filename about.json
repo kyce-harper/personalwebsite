@@ -1,0 +1,21 @@
+{
+  "bio": "I'm a Computer Science student passionate about performance engineering and systems programming. I love working close to the metal, optimizing code, and building high-performance applications in C++.",
+  "bio2": "When I'm not coding, you can find me playing games (hence the Xbox theme!), reading about computer architecture, or working on my latest game engine project.",
+  "contact": [
+    {
+      "label": "Email",
+      "value": "your.email@example.com",
+      "href": "mailto:your.email@example.com"
+    },
+    {
+      "label": "GitHub",
+      "value": "@yourusername",
+      "href": "https://github.com/yourusername"
+    },
+    {
+      "label": "LinkedIn",
+      "value": "Your Name",
+      "href": "https://linkedin.com/in/yourprofile"
+    }
+  ]
+}
