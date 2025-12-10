@@ -503,6 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
             const opened = mainNav.classList.toggle('open');
+            hamburger.classList.toggle('active', opened);
             if (navOverlay) navOverlay.classList.toggle('visible', opened);
             hamburger.setAttribute('aria-expanded', opened ? 'true' : 'false');
         });
@@ -512,6 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) {
                 if (mainNav.classList.contains('open')) {
                     mainNav.classList.remove('open');
+                    hamburger.classList.remove('active');
                     if (navOverlay) navOverlay.classList.remove('visible');
                     hamburger.setAttribute('aria-expanded', 'false');
                 }
@@ -521,6 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navOverlay) {
             navOverlay.addEventListener('click', () => {
                 mainNav.classList.remove('open');
+                hamburger.classList.remove('active');
                 navOverlay.classList.remove('visible');
                 hamburger.setAttribute('aria-expanded', 'false');
             });
@@ -529,6 +532,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ensure nav mode updates on resize
         window.addEventListener('resize', () => {
             updateNavMode();
+            // Also clear active state on desktop
+            if (window.innerWidth > 900) {
+                hamburger.classList.remove('active');
+            }
         });
     }
 });
