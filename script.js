@@ -164,57 +164,96 @@ async function renderContent(type) {
 function renderProjects() {
     return `
        <div class="project-card">
-    <h2>LiftLog-IOS</h2>
-    <p>The minimalist, ad-free strength tracker for dedicated lifters. Built with SwiftUI and Core Data, this app prioritizes privacy and Progressive Overload cues over AI bloat and subscriptions. Precise logging, zero nonsense.</p>
+            <h2>LiftLog-IOS</h2>
+            <p>The minimalist, ad-free strength tracker for dedicated lifters. Built with SwiftUI and Core Data, this app prioritizes privacy and Progressive Overload cues over AI bloat and subscriptions. Precise logging, zero nonsense.</p>
 
-    <div class="project-gallery cinematic-strip">
+            <div class="project-gallery cinematic-strip">
 
-        <div class="strip-item">
-            <img src="projects/LL1.png" alt="Ray Tracer Image 1">
-        </div>
+                <div class="strip-item">
+                    <img src="projects/LL1.png" alt="Ray Tracer Image 1">
+                </div>
 
-        ${!isMobile ? `
-            <div class="strip-item">
-                <img src="projects/LL2.png" alt="Ray Tracer Image 2">
+                ${!isMobile ? `
+                    <div class="strip-item">
+                        <img src="projects/LL2.png" alt="Ray Tracer Image 2">
+                    </div>
+
+                    <div class="strip-item">
+                        <img src="projects/LL3.png" alt="Ray Tracer Image 3">
+                    </div>
+                ` : ''}
+
             </div>
 
-            <div class="strip-item">
-                <img src="projects/LL3.png" alt="Ray Tracer Image 3">
-            </div>
-        ` : ''}
-
+    <p><a href="https://github.com/kyce-harper/LiftLog-IOS" target="_blank">View on GitHub →</a></p>
     </div>
 
-    <p><a href="https://github.com/yourusername/raytracer" target="_blank">View on GitHub →</a></p>
-</div>
-
-<!-- LIGHTBOX MODAL -->
-<div id="lightbox" class="lightbox">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" src="" alt="Preview">
-</div>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Preview">
+    </div>
 
 
         
-        <div class="project-card">
-            <h2>Memory Allocator</h2>
-            <p>Custom memory allocator implementing pool allocation and slab allocation strategies for game engines.</p>
-            <div class="project-gallery">
-                <div class="project-image">🖼️</div>
-                ${!isMobile ? '<div class="project-image">🖼️</div><div class="project-image">🖼️</div>' : ''}
+       <div class="project-card">
+            <h2>Arcane Dynamics</h2>
+            <p>Arcane Dynamics is a high-performance C++ real-time 2D kinematics visualizer wrapped in a fantasy “Arcane Dynamics” aesthetic. Built to help students learn projectile motion in a fun and engaging way, it blends physics, graphics, and interactivity—complete with a mage launching an animated fire projectile.</p>
+
+            <div class="project-gallery cinematic-strip">
+
+                <div class="strip-item">
+                    <img src="projects/Scene1.png" alt="Ray Tracer Image 1">
+                </div>
+
+                ${!isMobile ? `
+                    <div class="strip-item">
+                        <img src="projects/Scene2.png" alt="Ray Tracer Image 2">
+                    </div>
+
+                    <div class="strip-item">
+                        <img src="projects/Scene3.png" alt="Ray Tracer Image 3">
+                    </div>
+                ` : ''}
+
             </div>
-            <p><a href="https://github.com/yourusername/allocator" target="_blank">View on GitHub →</a></p>
-        </div>
+
+    <p><a href="https://github.com/Jfroge/ArcaneDynamicsCutieHack2025" target="_blank">View on GitHub →</a></p>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Preview">
+    </div>
         
         <div class="project-card">
-            <h2>Physics Engine</h2>
-            <p>2D rigid body physics engine with collision detection and resolution. Used in multiple game jam projects.</p>
-            <div class="project-gallery">
-                <div class="project-image">🖼️</div>
-                ${!isMobile ? '<div class="project-image">🖼️</div><div class="project-image">🖼️</div>' : ''}
+            <h2>Siply Hydration Tracker IOS</h2>
+            <p>This project deepened my knowledge of SwiftUI, @AppStorage for persistent data, and animation techniques for visually tracking progress.</p>
+
+            <div class="project-gallery cinematic-strip">
+
+                <div class="strip-item">
+                    <img src="projects/S1.png" alt="Ray Tracer Image 1">
+                </div>
+
+                ${!isMobile ? `
+                    <div class="strip-item">
+                        <img src="projects/S2.png" alt="Ray Tracer Image 2">
+                    </div>
+
+                    <div class="strip-item">
+                        <img src="projects/S3.png" alt="Ray Tracer Image 3">
+                    </div>
+                ` : ''}
+
             </div>
-            <p><a href="https://github.com/yourusername/physics" target="_blank">View on GitHub →</a></p>
-        </div>
+
+    <p><a href="https://github.com/kyce-harper/Siply-HydrationTracker" target="_blank">View on GitHub →</a></p>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Preview">
+    </div>
     `;
 }
 
@@ -287,17 +326,17 @@ function renderAbout() {
         <button class="close-btn" onclick="closeModal()">×</button>
         <h1>About Me</h1>
         <p style="font-size: 1.1rem; line-height: 1.8;">
-            I'm a Computer Science student passionate about performance engineering and systems programming. 
-            I love working close to the metal, optimizing code, and building high-performance applications in C++.
+            I'm a 2nd year CS Student currently working on  my IOS App Launch Expected New Years 2026. I am also learning and self studying competitive C++ programming
+            and getting in to preformace optimization and low level systems programming.
         </p>
         <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 20px;">
-            When I'm not coding, you can find me playing games (hence the Xbox theme!), reading about 
-            computer architecture, or working on my latest game engine project.
+            When I'm not coding, you can find me playing games (hence the OG Xbox360 inspo theme!), going to the gym or running,
+            reading CS books, or spending time with friends and family.
         </p>
         <h2 style="margin-top: 30px;">Contact</h2>
-        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>GitHub: <a href="https://github.com/yourusername" target="_blank">@yourusername</a></p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a></p>
+        <p>Email: <a href="mailto:kyceaharper@gmail.com">mail me</a></p>
+        <p>GitHub: <a href="https://github.com/kyce-harper" target="_blank">@kyce-harper</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/kyce-harper" target="_blank">Lets Connect!</a></p>
     `;
 }
 
