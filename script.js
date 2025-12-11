@@ -45,17 +45,34 @@ const tiles = [
 async function loadBlogPosts() {
     try {
         const response = await fetch('blog-posts/index.json');
+        if (!response.ok) {
+            console.error('Failed to load index.json:', response.status);
+            blogPosts = [];
+            return;
+        }
         const files = await response.json();
+        console.log('Found blog post files:', files);
         
         const posts = await Promise.all(
             files.map(async (filename) => {
-                const res = await fetch(`blog-posts/${filename}`);
-                const markdown = await res.text();
-                return parseMarkdownPost(markdown, filename);
+                try {
+                    const res = await fetch(`blog-posts/${filename}`);
+                    if (!res.ok) {
+                        console.error(`Failed to load ${filename}:`, res.status);
+                        return null;
+                    }
+                    const markdown = await res.text();
+                    console.log(`Loaded ${filename}:`, markdown.substring(0, 100));
+                    return parseMarkdownPost(markdown, filename);
+                } catch (err) {
+                    console.error(`Error loading ${filename}:`, err);
+                    return null;
+                }
             })
         );
         
-        blogPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        blogPosts = posts.filter(p => p !== null).sort((a, b) => new Date(b.date) - new Date(a.date));
+        console.log('Processed blog posts:', blogPosts);
     } catch (error) {
         console.error('Error loading blog posts:', error);
         blogPosts = [];
@@ -65,40 +82,56 @@ async function loadBlogPosts() {
 // Parse markdown with front matter
 function parseMarkdownPost(markdown, filename) {
     const lines = markdown.split('\n');
-    let inFrontMatter = false;
     let frontMatter = {};
     let contentStart = 0;
     
     // Check for front matter (--- at start)
     if (lines[0].trim() === '---') {
-        inFrontMatter = true;
         for (let i = 1; i < lines.length; i++) {
             if (lines[i].trim() === '---') {
                 contentStart = i + 1;
                 break;
             }
-            const [key, ...value] = lines[i].split(':');
-            if (key && value.length) {
-                frontMatter[key.trim()] = value.join(':').trim();
+            const line = lines[i].trim();
+            if (line) {
+                const colonIndex = line.indexOf(':');
+                if (colonIndex > -1) {
+                    const key = line.substring(0, colonIndex).trim();
+                    const value = line.substring(colonIndex + 1).trim();
+                    frontMatter[key] = value;
+                }
             }
         }
     }
     
-    const content = lines.slice(contentStart).join('\n');
+    const content = lines.slice(contentStart).join('\n').trim();
     
     // Extract title from first # heading if not in front matter
-    let title = frontMatter.title;
+    let title = frontMatter.title || frontMatter.Title;
     if (!title) {
         const titleMatch = content.match(/^#\s+(.+)$/m);
         title = titleMatch ? titleMatch[1] : filename.replace('.md', '');
     }
     
+    // Get date - try multiple formats
+    let date = frontMatter.date || frontMatter.Date || 'No date';
+    
+    // Get excerpt
+    let excerpt = frontMatter.excerpt || frontMatter.Excerpt;
+    if (!excerpt) {
+        // Remove markdown headers and get first 200 chars
+        const cleanContent = content.replace(/^#+\s+/gm, '').replace(/[*_`]/g, '').trim();
+        excerpt = cleanContent.substring(0, 200) + '...';
+    }
+    
+    console.log(`Parsed ${filename}:`, { title, date, excerpt: excerpt.substring(0, 50) });
+    
     return {
         title: title,
-        date: frontMatter.date || 'No date',
+        date: date,
         slug: filename.replace('.md', ''),
         content: content,
-        excerpt: frontMatter.excerpt || content.substring(0, 200).replace(/#/g, '').trim() + '...'
+        excerpt: excerpt
     };
 }
 
