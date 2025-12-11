@@ -346,6 +346,13 @@ a:hover {
     padding: 20px;
 }
 
+/* Hide info section on mobile */
+@media (max-width: 768px) {
+    .info-section {
+        display: none !important;
+    }
+}
+
 .info-title {
     font-size: 1.8rem;
     font-weight: 300;
@@ -585,12 +592,7 @@ a:hover {
         margin: 10px 0;
     }
 
-    /* Hide info section on mobile - it overlaps with tiles */
-    .info-section {
-        display: none;
-    }
-
-    /* Stack avatar and info vertically on mobile */
+    /* Stack avatar vertically on mobile */
     .avatar-container {
         top: 18%;
         left: 50%;
