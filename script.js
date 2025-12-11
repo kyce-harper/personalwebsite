@@ -163,18 +163,38 @@ async function renderContent(type) {
 
 function renderProjects() {
     return `
-        <button class="close-btn" onclick="closeModal()">×</button>
-        <h1>My Projects</h1>
-        
-        <div class="project-card">
-            <h2>High-Performance Ray Tracer</h2>
-            <p>Custom C++ ray tracer with SIMD optimizations and multi-threading. Achieved 10x performance improvement over baseline implementation.</p>
-            <div class="project-gallery">
-                <div class="project-image">🖼️</div>
-                ${!isMobile ? '<div class="project-image">🖼️</div><div class="project-image">🖼️</div>' : ''}
-            </div>
-            <p><a href="https://github.com/yourusername/raytracer" target="_blank">View on GitHub →</a></p>
+       <div class="project-card">
+    <h2>LiftLog-IOS</h2>
+    <p>The minimalist, ad-free strength tracker for dedicated lifters. Built with SwiftUI and Core Data, this app prioritizes privacy and Progressive Overload cues over AI bloat and subscriptions. Precise logging, zero nonsense.</p>
+
+    <div class="project-gallery cinematic-strip">
+
+        <div class="strip-item">
+            <img src="projects/LL1.png" alt="Ray Tracer Image 1">
         </div>
+
+        ${!isMobile ? `
+            <div class="strip-item">
+                <img src="projects/LL2.png" alt="Ray Tracer Image 2">
+            </div>
+
+            <div class="strip-item">
+                <img src="projects/LL3.png" alt="Ray Tracer Image 3">
+            </div>
+        ` : ''}
+
+    </div>
+
+    <p><a href="https://github.com/yourusername/raytracer" target="_blank">View on GitHub →</a></p>
+</div>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="Preview">
+</div>
+
+
         
         <div class="project-card">
             <h2>Memory Allocator</h2>
@@ -228,20 +248,37 @@ function renderBlog() {
 function renderResume() {
     return `
         <button class="close-btn" onclick="closeModal()">×</button>
-        <h1>Resume</h1>
+
+<div class="resume-content">
+
+    <h1>Resume</h1>
+
+    <section>
         <h2>Education</h2>
-        <p><strong>B.S. Computer Science</strong> - University Name<br>Expected Graduation: 2026<br>GPA: 3.8/4.0</p>
-        
-        <h2 style="margin-top: 30px;">Technical Skills</h2>
-        <p>C++17/20, Python, SIMD, Multi-threading, OpenGL, Vulkan, CMake, Git, Linux</p>
-        
-        <h2 style="margin-top: 30px;">Experience</h2>
-        <div class="blog-post">
-            <h3>Performance Engineering Intern - Company Name</h3>
-            <p>Optimized rendering pipeline, reducing frame time by 30% through profiling and targeted optimizations.</p>
-        </div>
-        
-        <p style="margin-top: 30px;"><a href="/path/to/resume.pdf" download>Download Full Resume (PDF) →</a></p>
+        <p>
+            <strong>B.S. Computer Science</strong> – University of California Riverside<br>
+            Expected Graduation: 2028<br>
+            GPA: 3.6
+        </p>
+    </section>
+
+    <section>
+        <h2>Technical Skills</h2>
+        <p>C++, OpenGL, CMake, Git, Swift, SwiftData</p>
+    </section>
+
+    <div class="resume-preview-container">
+        <a href="resume/Resume-Summer2025.pdf" target="_blank">
+            <img src="resume/rp.jpg" alt="Resume Preview" class="resume-preview">
+        </a>
+    </div>
+
+    <a class="resume-download" href="resume/Resume-Summer2025.pdf" download>
+        Download Full Resume (PDF) →
+    </a>
+
+</div>
+
     `;
 }
 
@@ -493,3 +530,20 @@ document.addEventListener('touchmove', (e) => {
 loadBlogPosts().then(() => {
     createTiles();
 });
+
+// Lightbox
+const stripItems = document.querySelectorAll('.strip-item img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+stripItems.forEach(item => {
+    item.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt;
+    });
+});
+
+function closeLightbox() {
+    lightbox.style.display = 'none';
+}
