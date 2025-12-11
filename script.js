@@ -300,25 +300,29 @@ function updateCarousel() {
     const total = tileElements.length;
     
     // Adjust spacing based on screen size
-    const spacing = isMobile ? 280 : 450;
+    const spacing = isMobile ? 240 : 450;
     
     tileElements.forEach((tile, index) => {
         const offset = index - currentIndex;
         const absOffset = Math.abs(offset);
         
         let x = offset * spacing;
-        let z = -absOffset * (isMobile ? 150 : 200);
-        let scale = 1 - (absOffset * (isMobile ? 0.2 : 0.15));
-        let opacity = 1 - (absOffset * 0.3);
+        let z = -absOffset * (isMobile ? 100 : 200);
+        let scale = 1 - (absOffset * (isMobile ? 0.25 : 0.15));
+        let opacity = 1 - (absOffset * 0.4);
         
-        if (absOffset > 2) {
+        // Hide tiles that are too far away
+        if (absOffset > 1 && isMobile) {
+            opacity = 0;
+            scale = 0.5;
+        } else if (absOffset > 2) {
             opacity = 0;
         }
         
         tile.style.transform = `translateX(${x}px) translateZ(${z}px) scale(${scale})`;
         tile.style.opacity = opacity;
         tile.style.zIndex = 100 - absOffset;
-        tile.style.pointerEvents = 'auto';
+        tile.style.pointerEvents = absOffset <= 1 ? 'auto' : 'none';
     });
     
     counter.textContent = `${currentIndex + 1} of ${total}`;

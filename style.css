@@ -587,68 +587,80 @@ a:hover {
 
     /* Stack avatar and info vertically on mobile */
     .avatar-container {
-        top: 15%;
+        top: 12%;
         left: 50%;
         transform: translate(-50%, 0);
     }
 
     .avatar {
-        width: 80px;
-        height: 80px;
-    }
-
-    .avatar-image {
-        font-size: 2.8rem;
-    }
-
-    .gamertag {
-        font-size: 1.1rem;
-    }
-
-    .gamerscore {
-        font-size: 0.9rem;
-    }
-
-    .info-section {
-        top: 32%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        max-width: 85%;
-        padding: 10px;
-    }
-
-    .info-title {
-        font-size: 1.2rem;
+        width: 70px;
+        height: 70px;
         margin-bottom: 10px;
     }
 
-    .info-text {
+    .avatar-image {
+        font-size: 2.5rem;
+    }
+
+    .gamertag {
+        font-size: 1rem;
+        margin-bottom: 3px;
+    }
+
+    .gamerscore {
         font-size: 0.85rem;
-        line-height: 1.5;
-        margin-bottom: 15px;
+    }
+
+    .info-section {
+        top: 28%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        max-width: 90%;
+        padding: 10px 15px;
+    }
+
+    .info-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .info-text {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        margin-bottom: 12px;
     }
 
     .social-links {
-        gap: 12px;
-        margin-top: 10px;
+        gap: 15px;
+        margin-top: 8px;
     }
 
     .social-icon {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     /* Optimize carousel for mobile */
     .carousel-container {
-        bottom: 120px;
+        bottom: 140px;
         height: 280px;
-        width: 95%;
+        width: 100%;
         perspective: 1000px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .tile {
-        width: 260px;
-        height: 220px;
+        width: 240px;
+        height: 200px;
         border-radius: 12px;
+        margin-left: -120px;
     }
 
     .tile-icon {
