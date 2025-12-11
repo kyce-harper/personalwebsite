@@ -47,6 +47,7 @@ async function loadBlogPosts() {
         const response = await fetch('blog-posts/index.json');
         if (!response.ok) {
             console.error('Failed to load index.json:', response.status);
+            console.log('Blog posts folder may not exist or index.json is missing');
             blogPosts = [];
             return;
         }
@@ -56,13 +57,19 @@ async function loadBlogPosts() {
         const posts = await Promise.all(
             files.map(async (filename) => {
                 try {
-                    const res = await fetch(`blog-posts/${filename}`);
+                    // Try with and without .md extension
+                    let res = await fetch(`blog-posts/${filename}`);
+                    if (!res.ok && !filename.endsWith('.md')) {
+                        res = await fetch(`blog-posts/${filename}.md`);
+                    }
+                    
                     if (!res.ok) {
                         console.error(`Failed to load ${filename}:`, res.status);
+                        console.log(`Make sure blog-posts/${filename} exists in your GitHub repo`);
                         return null;
                     }
                     const markdown = await res.text();
-                    console.log(`Loaded ${filename}:`, markdown.substring(0, 100));
+                    console.log(`Successfully loaded ${filename}`);
                     return parseMarkdownPost(markdown, filename);
                 } catch (err) {
                     console.error(`Error loading ${filename}:`, err);
@@ -72,9 +79,14 @@ async function loadBlogPosts() {
         );
         
         blogPosts = posts.filter(p => p !== null).sort((a, b) => new Date(b.date) - new Date(a.date));
-        console.log('Processed blog posts:', blogPosts);
+        console.log('Successfully processed blog posts:', blogPosts.length);
     } catch (error) {
         console.error('Error loading blog posts:', error);
+        console.log('To enable blog posts:');
+        console.log('1. Create a "blog-posts" folder in your repository');
+        console.log('2. Add an index.json file: ["post1.md", "post2.md"]');
+        console.log('3. Add your .md files to the blog-posts folder');
+        console.log('4. Commit and push to GitHub');
         blogPosts = [];
     }
 }
