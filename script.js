@@ -170,7 +170,7 @@ function renderProjects() {
             <div class="project-gallery cinematic-strip">
 
                 <div class="strip-item">
-                    <img src="projects/LL1.png" alt="Ray Tracer Image 1">
+                    <img src="projects/LL1.png" alt="Image 1">
                 </div>
 
                 ${!isMobile ? `
