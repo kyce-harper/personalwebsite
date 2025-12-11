@@ -587,7 +587,7 @@ a:hover {
 
     /* Stack avatar and info vertically on mobile */
     .avatar-container {
-        top: 12%;
+        top: 18%;
         left: 50%;
         transform: translate(-50%, 0);
     }
@@ -595,7 +595,7 @@ a:hover {
     .avatar {
         width: 70px;
         height: 70px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .avatar-image {
@@ -609,40 +609,46 @@ a:hover {
 
     .gamerscore {
         font-size: 0.85rem;
+        margin-bottom: 0;
     }
 
     .info-section {
-        top: 28%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        max-width: 90%;
-        padding: 10px 15px;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 280px auto 0;
+        max-width: 85%;
+        padding: 15px 20px;
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        z-index: 50;
     }
 
     .info-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 8px;
     }
 
     .info-text {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         line-height: 1.4;
         margin-bottom: 12px;
     }
 
     .social-links {
         gap: 15px;
-        margin-top: 8px;
+        margin-top: 10px;
     }
 
     .social-icon {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
-    /* Optimize carousel for mobile */
+    /* Optimize carousel for mobile - MOVED LOWER */
     .carousel-container {
-        bottom: 140px;
-        height: 280px;
+        bottom: 200px;
+        height: 250px;
         width: 100%;
         perspective: 1000px;
         display: flex;
@@ -683,12 +689,12 @@ a:hover {
     }
 
     .counter {
-        bottom: 45px;
+        bottom: 120px;
         font-size: 1rem;
     }
 
     .controls {
-        bottom: 15px;
+        bottom: 80px;
         font-size: 0.85rem;
     }
 
@@ -752,80 +758,105 @@ a:hover {
 
 @media (max-width: 480px) {
     .dashboard-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
     }
 
     .user-info {
-        font-size: 0.75rem;
-    }
-
-    .nav-menu {
-        font-size: 0.85rem;
-    }
-
-    .avatar {
-        width: 70px;
-        height: 70px;
-    }
-
-    .avatar-image {
-        font-size: 2.5rem;
-    }
-
-    .gamertag {
-        font-size: 1rem;
-    }
-
-    .info-title {
-        font-size: 1.1rem;
-    }
-
-    .info-text {
-        font-size: 0.8rem;
-    }
-
-    .social-icon {
-        font-size: 1.6rem;
-    }
-
-    .carousel-container {
-        bottom: 110px;
-        height: 240px;
-    }
-
-    .tile {
-        width: 220px;
-        height: 190px;
-    }
-
-    .tile-icon {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
-
-    .tile-title {
-        font-size: 1.1rem;
-    }
-
-    .tile-subtitle {
         font-size: 0.7rem;
     }
 
-    .counter {
-        bottom: 40px;
-        font-size: 0.9rem;
+    .nav-menu {
+        font-size: 0.8rem;
     }
 
-    .controls {
-        bottom: 12px;
+    .avatar-container {
+        top: 16%;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 6px;
+    }
+
+    .avatar-image {
+        font-size: 2rem;
+    }
+
+    .gamertag {
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+    }
+
+    .gamerscore {
         font-size: 0.75rem;
     }
 
+    .info-section {
+        margin-top: 260px;
+        max-width: 88%;
+        padding: 12px 18px;
+    }
+
+    .info-title {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .info-text {
+        font-size: 0.75rem;
+        line-height: 1.35;
+        margin-bottom: 10px;
+    }
+
+    .social-links {
+        gap: 12px;
+    }
+
+    .social-icon {
+        font-size: 1.5rem;
+    }
+
+    .carousel-container {
+        bottom: 180px;
+        height: 220px;
+    }
+
+    .tile {
+        width: 200px;
+        height: 170px;
+        margin-left: -100px;
+    }
+
+    .tile-icon {
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+    }
+
+    .tile-title {
+        font-size: 1rem;
+    }
+
+    .tile-subtitle {
+        font-size: 0.65rem;
+    }
+
+    .counter {
+        bottom: 105px;
+        font-size: 0.85rem;
+    }
+
+    .controls {
+        bottom: 65px;
+        font-size: 0.7rem;
+    }
+
     .xbox-button {
-        width: 24px;
-        height: 24px;
-        line-height: 24px;
-        font-size: 0.8rem;
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 0.75rem;
     }
 
     .modal-content {
@@ -837,11 +868,11 @@ a:hover {
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
