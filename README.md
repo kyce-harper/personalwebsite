@@ -1,165 +1,53 @@
-# My Portfolio - Xbox 360 Style
+# Xbox 360 Style Portfolio
 
-A responsive, Xbox-themed portfolio website featuring projects, blog, resume, and about sections. All content is easily editable via JSON files.
+A retro Xbox 360-inspired portfolio website with automatic blog post loading from markdown files.
 
-## Features
+## 🎮 Features
 
-- **Responsive Design**: Works on desktop, tablet, and mobile.
-- **Off-canvas Mobile Navigation**: Hamburger menu for smaller screens.
-- **Dynamic Content**: Projects, blog posts, resume, and about info loaded from JSON files.
-- **Minimal Animations**: Xbox-inspired swirl transitions and subtle tile motion.
-- **Background Swirl**: Blurred white decorative swirl element.
-- **Accessibility**: Respects `prefers-reduced-motion` for users who prefer reduced animations.
-- **GitHub Pages Ready**: Automatic deployment via GitHub Actions.
+- Xbox 360 dashboard UI with carousel navigation
+- Automatic blog post loading from markdown files
+- Keyboard navigation (Arrow keys, Enter, Escape)
+- Touch/swipe support for mobile
+- Markdown support with front matter
+- Fully static - works on GitHub Pages
 
-## Project Structure
+## 📁 File Structure
 
 ```
-.
-├── index.html                           # Main HTML file
-├── style.css                            # Styling
-├── script.js                            # JavaScript logic
-├── projects.json                        # Projects data
-├── about.json                           # About section data
-├── resume.json                          # Resume section data
-├── blog-posts/                          # Markdown blog posts
-│   ├── index.json                       # List of blog post filenames
-│   └── *.md                             # Individual blog posts
-├── .github/workflows/deploy.yml         # GitHub Actions deployment config
-├── .gitignore                           # Git ignore rules
-└── README.md                            # This file
+your-repo/
+├── index.html
+├── style.css
+├── script.js
+├── blog-posts/
+│   ├── index.json
+│   ├── 2025-12-05-cache-optimization.md
+│   ├── 2025-11-28-systems-programming.md
+│   └── 2025-11-15-game-jam.md
+└── README.md
 ```
 
-## Editing Content
+## 🚀 Setup for GitHub Pages
 
-### Projects
-Edit `projects.json` and add entries with:
-- `title` (string)
-- `description` (string)
-- `image` (path to image; optional)
-- `link` (URL to project; optional)
+1. Create a new repository named `yourusername.github.io`
+2. Clone it locally
+3. Add all the files from this project
+4. Push to GitHub:
+   ```bash
+   git add .
+   git commit -m "Initial portfolio"
+   git push origin main
+   ```
+5. Your site will be live at `https://yourusername.github.io`
 
-### Blog Posts
-Add `.md` files to `blog-posts/` with YAML front matter:
-```markdown
----
-title: My Blog Post
-date: 2025-12-09
-excerpt: Short description
----
-# Content here...
-```
-Then update `blog-posts/index.json` with the new filename.
+## ✍️ Adding Blog Posts
 
-### About Section
-Edit `about.json`:
-- `bio` (main biography text)
-- `bio2` (additional bio text)
-- `contact` (array of contact info with `label`, `value`, `href`)
+### Quick Method (Just Add Markdown!)
 
-### Resume Section
-Edit `resume.json`:
-- `education` (array with `degree`, `school`, `graduation`, `gpa`)
-- `skills` (string of comma-separated skills)
-- `experience` (array with `title`, `company`, `description`)
-- `resumeLink` (path to PDF)
+1. Create a new `.md` file in the `blog-posts/` folder
+2. Name it with the date: `YYYY-MM-DD-post-title.md`
+3. Add it to `blog-posts/index.json`
+4. Push to GitHub - done!
 
-## Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/personalwebsite.git
-cd personalwebsite
-```
-
-2. Serve locally:
-```bash
-python3 -m http.server 8000
-```
-
-3. Open http://localhost:8000 in your browser.
-
-## GitHub Pages Deployment
-
-### Initial Setup (One Time)
-
-1. **Create a new GitHub repository**:
-   - Go to https://github.com/new
-   - Name it `personalwebsite` (or any name you prefer)
-   - Choose "Public" (required for free GitHub Pages)
-   - Do NOT initialize with README/gitignore
-
-2. **Push your local repo to GitHub**:
-```bash
-cd /Users/kyceharper/Documents/personalwebsite
-git remote add origin https://github.com/yourusername/personalwebsite.git
-git branch -M main
-git add .
-git commit -m "Initial commit: portfolio site"
-git push -u origin main
-```
-
-3. **Enable GitHub Pages**:
-   - Go to your repo → **Settings** → **Pages**
-   - Under "Build and deployment"
-   - Source: select **"Deploy from a branch"**
-   - Branch: select `gh-pages` (created by Actions)
-   - Folder: `/ (root)` 
-   - Click **Save**
-
-4. **Wait for the first deployment**:
-   - Go to **Actions** tab
-   - Watch the `Deploy to GitHub Pages` workflow run
-   - Once complete, your site is live at:
-   - `https://yourusername.github.io/personalwebsite`
-
-### Making Changes
-
-After initial setup, just edit files and push:
-```bash
-# Make changes to any file (e.g., projects.json, about.json, etc.)
-git add .
-git commit -m "Update projects section"
-git push
-```
-
-The GitHub Actions workflow will automatically:
-1. Detect the push to `main`
-2. Deploy your site to the `gh-pages` branch
-3. Update your live site within ~30 seconds
-
-### Troubleshooting Deployment
-
-- **Check Actions**: Go to repo → **Actions** tab → see workflow logs
-- **Pages not updating**: Make sure `gh-pages` branch is selected in Pages settings
-- **Custom domain**: In Pages settings, add your domain in "Custom domain" field
-
-## Customization
-
-- **Colors**: Edit the gradient and accent colors in `style.css`
-- **Animations**: Adjust durations and easing in the `@keyframes` sections
-- **Header**: Update `dashboard-title` and `user-info` in `index.html`
-- **Avatar/Gamertag**: Edit the emoji and text in the avatar section
-- **Background swirl**: Modify the SVG in `index.html` or adjust opacity in `style.css`
-
-## Browser Support
-
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Tips for Success
-
-1. **Keep it simple**: JSON files are easier to maintain than code changes
-2. **Use descriptive names**: For projects, use clear titles (users will see them)
-3. **Test locally first**: Use `python3 -m http.server 8000` before pushing
-4. **Check Actions logs**: If something looks wrong, Actions → workflow logs will tell you why
-5. **Use branches for big changes**: Create a feature branch for major updates, merge with PR
-
-## License
-
-This project is open source and available under the MIT License.
 ### Blog Post Format
 
 Each blog post should have front matter at the top:

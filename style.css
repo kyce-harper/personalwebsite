@@ -8,24 +8,20 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom, #4a7c2c 0%, #8bc34a 50%, #cddc39 100%);
     min-height: 100vh;
-    overflow: auto; /* allow scrolling on small viewports */
+    overflow: hidden;
     color: white;
-    position: relative;
 }
 
-/* Blurred white swirl background element */
-.background-swirl {
-    position: fixed;
+.top-bar {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.4;
+    height: 80px;
+    background: rgb(45, 45, 45);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 150;
 }
-
-/* legacy .top-bar removed; header handles top chrome now */
 
 .dashboard-header {
     position: absolute;
@@ -36,40 +32,35 @@ body {
 }
 
 .dashboard-title {
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: 2.5rem;
     font-weight: 300;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    white-space: nowrap;
 }
 
 .user-info {
-    margin-top: 0;
-    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    margin-top: 10px;
+    font-size: 1.2rem;
     opacity: 0.9;
-    white-space: nowrap;
 }
 
 .nav-menu {
-    position: static;
-    font-size: 1.1rem;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-size: 1.3rem;
     z-index: 200;
 }
 
 .nav-menu ul {
     list-style: none;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 .nav-menu li {
-    margin: 0;
-    opacity: 0.8;
+    margin: 15px 0;
+    opacity: 0.7;
     cursor: pointer;
     transition: opacity 0.3s;
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
 .nav-menu li:hover, .nav-menu li.active {
@@ -81,108 +72,13 @@ body {
     color: white;
 }
 
-/* Site header that holds title, nav and user info */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 0 20px;
-    background: rgba(35,35,35,0.95);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.35);
-    z-index: 999;
-}
-
-.site-left { display:flex; align-items:center; gap:12px; flex:1; }
-.site-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
-
-/* Hamburger button - more touch-friendly */
-.hamburger {
-    display: none;
-    min-width: 48px;
-    min-height: 48px;
-    padding: 8px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-}
-.hamburger-box { display:inline-block; position:relative; width:24px; height:18px; }
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-    width: 24px;
-    height: 3px;
-    background-color: white;
-    position: absolute;
-    left: 0;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    border-radius: 2px;
-}
-.hamburger-inner { top: 50%; transform: translateY(-50%); }
-.hamburger-inner::before { content: ''; top: -8px; }
-.hamburger-inner::after { content: ''; top: 8px; }
-
-.hamburger.active .hamburger-inner {
-    background: transparent;
-}
-.hamburger.active .hamburger-inner::before {
-    transform: rotate(45deg) translateY(8px);
-}
-.hamburger.active .hamburger-inner::after {
-    transform: rotate(-45deg) translateY(-8px);
-}
-
-/* Mobile nav opened state */
-.nav-menu.offcanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: min(80vw, 300px);
-    background: rgba(35,35,35,0.98);
-    transform: translateX(-110%);
-    transition: transform 0.26s cubic-bezier(.2,.8,.2,1);
-    padding: max(74px, calc(env(safe-area-inset-top) + 20px)) 20px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    z-index: 998;
-    overflow-y: auto;
-    box-shadow: 2px 0 20px rgba(0,0,0,0.5);
-}
-
-.nav-menu.offcanvas.open {
-    transform: translateX(0);
-}
-
-/* overlay shown when offcanvas open */
-.nav-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.26s ease;
-    z-index: 997;
-}
-.nav-overlay.visible { opacity: 1; pointer-events: auto; }
-
 .carousel-container {
     position: absolute;
-    bottom: 150px;
+    bottom: 200px;
     left: 50%;
     transform: translateX(-50%);
-    width: min(380px, 85vw);
-    height: clamp(300px, 60vh, 600px);
-    z-index: 100;
-    padding: 0 10px;
+    width: 90%;
+    height: 400px;
     perspective: 1500px;
 }
 
@@ -196,8 +92,8 @@ body {
 
 .tile {
     position: absolute;
-    width: min(380px, 85vw);
-    aspect-ratio: 380/320;
+    width: 380px;
+    height: 320px;
     background: linear-gradient(135deg, #7cb342 0%, #9ccc65 50%, #aed581 100%);
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
@@ -210,8 +106,6 @@ body {
     left: 50%;
     transform-origin: center;
     pointer-events: auto;
-    padding: clamp(20px, 5vw, 30px);
-    min-height: 250px;
 }
 
 .tile:hover {
@@ -220,20 +114,19 @@ body {
 }
 
 .tile-icon {
-    font-size: clamp(2rem, 8vw, 5rem);
-    margin-bottom: clamp(12px, 3vw, 20px);
+    font-size: 5rem;
+    margin-bottom: 20px;
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
 }
 
 .tile-title {
-    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    font-size: 1.8rem;
     font-weight: 300;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    line-height: 1.3;
 }
 
 .tile-subtitle {
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    font-size: 0.9rem;
     opacity: 0.8;
     margin-top: 5px;
 }
@@ -243,7 +136,7 @@ body {
     bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    font-size: 1.2rem;
     opacity: 0.8;
 }
 
@@ -252,9 +145,8 @@ body {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-size: 1rem;
     opacity: 0.9;
-    text-align: center;
 }
 
 .xbox-button {
@@ -280,9 +172,7 @@ body {
     z-index: 200;
     display: none;
     overflow-y: auto;
-    overflow-x: hidden;
-    padding: clamp(20px, 5vw, 40px);
-    padding-top: max(80px, calc(env(safe-area-inset-top) + 20px));
+    padding: 40px;
 }
 
 .content-modal.active {
@@ -291,30 +181,24 @@ body {
 
 .modal-content {
     max-width: 900px;
-    margin: 0 auto 40px;
+    margin: 0 auto;
     background: linear-gradient(135deg, #4a7c2c 0%, #7cb342 100%);
-    padding: clamp(20px, 5vw, 40px);
+    padding: 40px;
     border-radius: 15px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    word-wrap: break-word;
 }
 
 .close-btn {
     float: right;
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: 2rem;
     cursor: pointer;
     background: none;
     border: none;
     color: white;
     opacity: 0.7;
     transition: opacity 0.3s;
-    padding: 8px 12px;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: -8px -12px -8px 0;
+    padding: 10px;
+    margin: -10px;
 }
 
 .close-btn:hover {
@@ -342,15 +226,13 @@ body {
 
 .blog-full-content {
     line-height: 1.8;
-    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
 }
 
 .blog-full-content h1,
 .blog-full-content h2,
 .blog-full-content h3 {
-    margin-top: clamp(20px, 5vw, 30px);
+    margin-top: 30px;
     margin-bottom: 15px;
-    font-size: clamp(1.1rem, 3vw, 1.8rem);
 }
 
 .blog-full-content p {
@@ -406,19 +288,18 @@ a:hover {
 
 .avatar-container {
     position: absolute;
-    top: clamp(20%, 35%, 50%);
+    top: 35%;
     left: 25%;
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 50;
     pointer-events: none;
-    margin-top: 32px;
 }
 
 .avatar {
     position: relative;
-    width: clamp(80px, 16vw, 140px);
-    height: clamp(80px, 16vw, 140px);
+    width: 120px;
+    height: 120px;
     margin: 0 auto 15px;
 }
 
@@ -438,47 +319,38 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: 4rem;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 .gamertag {
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-size: 1.5rem;
     font-weight: 300;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .gamerscore {
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    opacity: 0.7;
-    margin-top: 5px;
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 .info-section {
     position: absolute;
-    top: 55%;
-    left: 75%;
-    transform: translateX(-50%);
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    width: 35%;
     z-index: 50;
-    pointer-events: none;
-    margin-top: 32px;
-    padding: 0 10px;
+    max-width: 400px;
+    padding: 20px;
 }
 
 .info-title {
-    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    font-size: 1.8rem;
     font-weight: 300;
-    letter-spacing: 1px;
+    margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-.info-text {
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    margin-top: 10px;
-    opacity: 0.9;
 }
 
 .info-text {
@@ -509,6 +381,7 @@ a:hover {
     transform: translateY(-5px) scale(1.1);
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
 }
+
 .project-card {
     background: rgba(255,255,255,0.1);
     padding: 25px;
@@ -527,7 +400,7 @@ a:hover {
 
 .project-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     margin: 20px 0;
 }
@@ -549,13 +422,23 @@ a:hover {
     transform: scale(1.05);
 }
 
-/* To add actual images, replace the placeholder with:
-<div class="project-image" style="background-image: url('images/project1.jpg'); background-size: cover; background-position: center;"></div>
-*/
+.sync-spinner {
+    width: 80px;
+    height: 80px;
+    margin: 100px auto;
+    border: 8px solid rgba(255,255,255,0.2);
+    border-top: 8px solid white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 .content-modal.syncing .modal-content {
-    /* very minimal, snappy entrance to match exit */
-    animation: xboxSwirlIn 0.12s cubic-bezier(.22,1,.36,1) forwards;
+    animation: fadeIn 0.4s ease;
 }
 
 @keyframes fadeIn {
@@ -563,161 +446,417 @@ a:hover {
     100% { opacity: 1; transform: scale(1); }
 }
 
-/* Xbox-style swirl / panel entrance */
-@keyframes xboxSwirlIn {
-    0% {
-        transform: rotate(-2deg) scale(0.995) translateZ(-12px);
-        opacity: 0;
-        filter: blur(1px) saturate(0.98);
-    }
-    60% {
-        transform: rotate(-1deg) scale(0.998) translateZ(2px);
-        opacity: 1;
-        filter: none;
-    }
-    100% {
-        transform: rotate(0deg) scale(1) translateZ(0);
-        opacity: 1;
-        filter: none;
-    }
-}
+/* ========================================
+   MOBILE OPTIMIZATION - Tablet & Mobile
+   ======================================== */
 
-@keyframes xboxSwirlOut {
-    0% {
-        transform: rotate(0deg) scale(1) translateZ(0);
-        opacity: 1;
-        filter: none;
-    }
-    100% {
-        transform: rotate(-2deg) scale(0.995) translateZ(-12px);
-        opacity: 0;
-        filter: blur(1px) saturate(0.98);
-    }
-}
-
-/* Close animation state */
-.content-modal.closing .modal-content {
-    animation: xboxSwirlOut 0.12s cubic-bezier(.22,1,.36,1) forwards;
-}
-
-/* Removed rotating shimmer overlay per user request (it suggested slow loading). */
-
-/* Tile swirl when navigating (very minimal) */
-.tile-swirling .tile {
-    animation: tileSwirl 100ms cubic-bezier(.2,.9,.3,1);
-}
-
-@keyframes tileSwirl {
-    0% { transform: translateY(0) rotateZ(0) scale(1); }
-    50% { transform: translateY(-2px) rotateZ(1deg) scale(1.005); }
-    100% { transform: translateY(0) rotateZ(0) scale(1); }
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* Responsive adjustments */
-@media (max-width: 900px) {
-    .site-header {
-        height: 56px;
-        padding: 0 8px;
+@media (max-width: 1024px) {
+    .top-bar {
+        height: 60px;
     }
 
-    /* On small screens use off-canvas nav */
-    .nav-menu { display: none; }
-    .nav-menu.offcanvas { display: flex; }
-    .hamburger { display: flex; }
-
-    .avatar-container,
-    .info-section {
-        position: static;
-        transform: none;
-        left: auto;
-        top: auto;
-        margin: 16px auto;
-        margin-top: 20px;
-        text-align: center;
-        pointer-events: auto;
-        max-width: 90%;
-        padding: 0 20px;
-    }
-
-    .carousel-container {
-        bottom: 120px;
-        height: 45vh;
-    }
-
-    .controls, .counter {
-        bottom: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    .site-header {
-        height: 52px;
-        gap: 8px;
-        padding: 0 4px;
+    .dashboard-header {
+        top: 15px;
+        right: 20px;
     }
 
     .dashboard-title {
-        font-size: 1.2rem;
-        letter-spacing: 0.5px;
+        font-size: 1.8rem;
     }
 
     .user-info {
-        display: none;
+        font-size: 1rem;
     }
 
-    .site-left {
-        gap: 8px;
+    .nav-menu {
+        top: 20px;
+        left: 20px;
+        font-size: 1.1rem;
     }
 
-    .tile-subtitle {
-        display: none;
+    .avatar-container {
+        top: 25%;
+        left: 50%;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .avatar-image {
+        font-size: 3.5rem;
+    }
+
+    .gamertag {
+        font-size: 1.3rem;
+    }
+
+    .info-section {
+        top: 40%;
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .info-title {
+        font-size: 1.5rem;
+    }
+
+    .info-text {
+        font-size: 0.95rem;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+
+    .social-icon {
+        font-size: 2rem;
     }
 
     .carousel-container {
-        bottom: 110px;
-        width: 96%;
-        height: 50vh;
-        padding: 0;
+        bottom: 150px;
+        height: 350px;
+    }
+
+    .tile {
+        width: 320px;
+        height: 280px;
+    }
+
+    .tile-icon {
+        font-size: 4rem;
+    }
+
+    .tile-title {
+        font-size: 1.5rem;
+    }
+
+    .tile-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .counter {
+        bottom: 60px;
+        font-size: 1.1rem;
+    }
+
+    .controls {
+        bottom: 20px;
+        font-size: 0.95rem;
+    }
+
+    .modal-content {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .top-bar {
+        height: 50px;
+    }
+
+    .dashboard-header {
+        top: 10px;
+        right: 15px;
+    }
+
+    .dashboard-title {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+
+    .user-info {
+        font-size: 0.85rem;
+        margin-top: 5px;
+    }
+
+    .nav-menu {
+        top: 15px;
+        left: 15px;
+        font-size: 0.95rem;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    /* Stack avatar and info vertically on mobile */
+    .avatar-container {
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-image {
+        font-size: 2.8rem;
+    }
+
+    .gamertag {
+        font-size: 1.1rem;
+    }
+
+    .gamerscore {
+        font-size: 0.9rem;
+    }
+
+    .info-section {
+        top: 32%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        max-width: 85%;
+        padding: 10px;
+    }
+
+    .info-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .info-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .social-links {
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        font-size: 1.8rem;
+    }
+
+    /* Optimize carousel for mobile */
+    .carousel-container {
+        bottom: 120px;
+        height: 280px;
+        width: 95%;
+        perspective: 1000px;
+    }
+
+    .tile {
+        width: 260px;
+        height: 220px;
+        border-radius: 12px;
+    }
+
+    .tile-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .tile-title {
+        font-size: 1.3rem;
+    }
+
+    .tile-subtitle {
+        font-size: 0.75rem;
+    }
+
+    /* Disable hover effects on mobile (use tap instead) */
+    .tile:hover {
+        transform: none !important;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .counter {
+        bottom: 45px;
+        font-size: 1rem;
+    }
+
+    .controls {
+        bottom: 15px;
+        font-size: 0.85rem;
+    }
+
+    .xbox-button {
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        font-size: 0.9rem;
+    }
+
+    /* Modal optimizations */
+    .content-modal {
+        padding: 20px;
+    }
+
+    .modal-content {
+        padding: 25px 20px;
+        border-radius: 12px;
+    }
+
+    .close-btn {
+        font-size: 1.8rem;
+        padding: 8px;
+    }
+
+    .blog-post {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .blog-post h2 {
+        font-size: 1.3rem;
+    }
+
+    .blog-post p {
+        font-size: 0.9rem;
     }
 
     .project-gallery {
         grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    .modal-content {
-        padding: clamp(16px, 4vw, 24px);
-        border-radius: 10px;
+    .project-card {
+        padding: 20px;
+        margin: 20px 0;
     }
 
-    .avatar-image {
-        font-size: clamp(2rem, 12vw, 3rem);
+    .project-card h2 {
+        font-size: 1.4rem;
     }
 
-    .close-btn {
-        float: none;
-        position: absolute;
-        top: 8px;
-        right: 8px;
+    h1 {
+        font-size: 1.8rem;
     }
 
-    .blog-post {
-        padding: 16px;
-        margin: 12px 0;
-    }
-
-    .controls, .counter {
-        font-size: 0.75rem;
-        bottom: 90px;
+    h2 {
+        font-size: 1.4rem;
     }
 }
 
-/* Ensure images or background-image placeholders are responsive */
-.project-image { width: 100%; height: auto; }
+@media (max-width: 480px) {
+    .dashboard-title {
+        font-size: 1.2rem;
+    }
+
+    .user-info {
+        font-size: 0.75rem;
+    }
+
+    .nav-menu {
+        font-size: 0.85rem;
+    }
+
+    .avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .avatar-image {
+        font-size: 2.5rem;
+    }
+
+    .gamertag {
+        font-size: 1rem;
+    }
+
+    .info-title {
+        font-size: 1.1rem;
+    }
+
+    .info-text {
+        font-size: 0.8rem;
+    }
+
+    .social-icon {
+        font-size: 1.6rem;
+    }
+
+    .carousel-container {
+        bottom: 110px;
+        height: 240px;
+    }
+
+    .tile {
+        width: 220px;
+        height: 190px;
+    }
+
+    .tile-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .tile-title {
+        font-size: 1.1rem;
+    }
+
+    .tile-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .counter {
+        bottom: 40px;
+        font-size: 0.9rem;
+    }
+
+    .controls {
+        bottom: 12px;
+        font-size: 0.75rem;
+    }
+
+    .xbox-button {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 0.8rem;
+    }
+
+    .modal-content {
+        padding: 20px 15px;
+    }
+
+    .blog-post {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Landscape mode adjustments for mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .avatar-container {
+        display: none;
+    }
+
+    .info-section {
+        top: 20%;
+    }
+
+    .carousel-container {
+        bottom: 80px;
+        height: 200px;
+    }
+
+    .tile {
+        height: 160px;
+    }
+
+    .counter {
+        bottom: 30px;
+    }
+
+    .controls {
+        bottom: 8px;
+    }
+}

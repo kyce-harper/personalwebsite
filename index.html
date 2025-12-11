@@ -2,47 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>My Portfolio - Xbox 360 Style</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Blurred white swirl background -->
-    <svg class="background-swirl" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
-        <defs>
-            <filter id="swirl-blur">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
-            </filter>
-        </defs>
-        <path d="M 100 400 Q 250 200, 400 150 T 700 300 T 1000 200 Q 1100 180, 1200 400" 
-              stroke="rgba(255,255,255,0.08)" stroke-width="120" fill="none" filter="url(#swirl-blur)" 
-              stroke-linecap="round" />
-        <path d="M 50 500 Q 300 600, 500 550 T 900 650 T 1200 500" 
-              stroke="rgba(255,255,255,0.06)" stroke-width="100" fill="none" filter="url(#swirl-blur)" 
-              stroke-linecap="round" />
-    </svg>
+    <div class="top-bar"></div>
+    
+    <div class="dashboard-header">
+        <div class="dashboard-title">My Portfolio</div>
+        <div class="user-info">CS Student | C++ Engineer</div>
+    </div>
 
-    <header class="site-header">
-        <div class="site-left">
-            <button id="hamburgerBtn" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-            </button>
-            <div class="dashboard-title">My Portfolio</div>
-        </div>
-
-        <nav class="nav-menu" id="mainNav">
-            <ul>
-                <li class="active">My Dashboard</li>
-            </ul>
-        </nav>
-
-        <div class="site-right">
-            <div class="user-info">CS Student | C++ Engineer</div>
-        </div>
-    </header>
-
-    <!-- Off-canvas nav overlay (shown when mobile nav is open) -->
-    <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
+    <nav class="nav-menu">
+        <ul>
+            <li class="active">My Dashboard</li>
+        </ul>
+    </nav>
 
     <div class="avatar-container">
         <div class="avatar">
