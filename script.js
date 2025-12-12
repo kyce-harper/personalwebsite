@@ -307,12 +307,12 @@ function renderResume() {
     </section>
 
     <div class="resume-preview-container">
-        <a href="resume/Resume-Summer2025.pdf" target="_blank">
+        <a href="resume/KyceHarperTechnicalResume.pdf" target="_blank">
             <img src="resume/rp.jpg" alt="Resume Preview" class="resume-preview">
         </a>
     </div>
 
-    <a class="resume-download" href="resume/Resume-Summer2025.pdf" download>
+    <a class="resume-download" href="resume/KyceHarperTechnicalResume.pdf" download>
         Download Full Resume (PDF) →
     </a>
 
