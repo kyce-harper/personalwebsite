@@ -308,7 +308,7 @@ function renderResume() {
 
     <div class="resume-preview-container">
         <a href="resume/KyceHarperTechnicalResume.pdf" target="_blank">
-            <img src="resume/rp.jpg" alt="Resume Preview" class="resume-preview">
+            <img src="resume/KyceHarperTechnicalResume.pdf" alt="Resume Preview" class="resume-preview">
         </a>
     </div>
 
